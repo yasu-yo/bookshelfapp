@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}レビュー投稿{% endblock %}
+{% block h1 %}レビュー投稿{% endblock %}
+
+{% block content %}
+  <form method="post" class="p-4 m-4 bg-light border border-success rounded" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label class="form-label">対象書籍</label>
+      <input class="form-control" value="{{ book.title }}" readonly disabled>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="{{ form.title.id_for_label }}">タイトル</label>
+      {{ form.title }}
+      {% if form.title.errors %}
+        <div class="text-danger">{{ form.title.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="{{ form.text.id_for_label }}">本文</label>
+      {{ form.text }}
+      {% if form.text.errors %}
+        <div class="text-danger">{{ form.text.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="{{ form.rate.id_for_label }}">星の数</label>
+      {{ form.rate }}
+      {% if form.rate.errors %}
+        <div class="text-danger">{{ form.rate.errors }}</div>
+      {% endif %}
+    </div>
+
+    <input type="hidden" name="book" value="{{ book.id }}">
+
+    <button type="submit" class="btn btn-success mt-4">投稿する</button>
+  </form>
+{% endblock %}
