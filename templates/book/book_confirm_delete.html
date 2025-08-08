@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}レビュー削除{% endblock %}
+{% block title %}書籍削除{% endblock %}
 
 {% block content %}
-  <h2>レビュー削除確認</h2>
-  <p>以下のレビューを本当に削除しますか？</p>
+  <h2>書籍削除確認</h2>
+  <p>以下の書籍を本当に削除しますか？</p>
   <p><strong>{{ object.title }}</strong></p>
 
   <form method="post">
     {% csrf_token %}
     <button type="submit" class="btn btn-danger">削除する</button>
-    <a href="{% url 'book:detail-book' object.book.id %}" class="btn btn-secondary">キャンセル</a>
+    <a href="{% url 'book:detail-book' object.id %}" class="btn btn-secondary">キャンセル</a>
   </form>
 {% endblock %}
